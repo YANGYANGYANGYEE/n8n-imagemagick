@@ -1,9 +1,9 @@
 FROM n8nio/n8n:latest
 
-# bust cache
-ARG CACHE_DATE=2026-03-31
-
 USER root
+
+# เพิ่มบรรทัดนี้เพื่อ force bust cache
+ARG CACHEBUST=2
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     imagemagick \
