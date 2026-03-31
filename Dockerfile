@@ -1,7 +1,11 @@
 FROM n8nio/n8n:latest-alpine
 USER root
 
-RUN apk add --no-cache imagemagick ghostscript
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    imagemagick \
+    ghostscript \
+    && rm -rf /var/lib/apt/lists/*
+
 
 # สคริปต์ start ที่จะ chown ให้ user node (uid=1000) ทุกครั้งที่ container เริ่ม
 COPY docker-start.sh /usr/local/bin/docker-start.sh
